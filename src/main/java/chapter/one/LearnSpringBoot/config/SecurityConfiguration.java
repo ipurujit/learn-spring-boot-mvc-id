@@ -34,17 +34,18 @@ public class SecurityConfiguration {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
             .antMatchers(HttpMethod.POST,
-                    "/user/login", "/user/register", "/user/test/setup/roles")
+                    authFilter.getLogin(), authFilter.getRegister(), authFilter.getRolesSetup())
             .permitAll()
             .antMatchers(HttpMethod.OPTIONS,
-                    "/user/login", "/user/register", "/user/test/setup/roles")
+                    authFilter.getLogin(), authFilter.getRegister(), authFilter.getRolesSetup())
             .permitAll()
 //            .antMatchers("/**")
 //            .hasAuthority("USER")
             .anyRequest()
-            .authenticated();
+            .authenticated()
+            .and()
+            .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
