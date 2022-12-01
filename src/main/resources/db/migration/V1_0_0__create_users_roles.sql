@@ -4,8 +4,8 @@
 
 -- DROP SCHEMA IF EXISTS auth ;
 
-CREATE SCHEMA IF NOT EXISTS auth
-    AUTHORIZATION exponenter;
+--CREATE SCHEMA IF NOT EXISTS auth
+--    AUTHORIZATION current_user;
 
 -- Table: auth.users
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS auth.users
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS auth.users
-    OWNER to exponenter;
+    OWNER to current_user;
 
 -- Table: auth.roles
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS auth.roles
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS auth.roles
-    OWNER to exponenter;
+    OWNER to current_user;
 
 -- Table: auth.user_roles
 
@@ -75,5 +75,5 @@ CREATE TABLE IF NOT EXISTS auth.user_roles
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS auth.user_roles
-    OWNER to exponenter;
+    OWNER to current_user;
 

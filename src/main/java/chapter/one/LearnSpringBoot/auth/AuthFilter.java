@@ -35,7 +35,7 @@ public class AuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         return Stream.of(LOGIN, REGISTER, ROLES_SETUP)
-                .anyMatch(val -> new AntPathMatcher().match(val,request.getServletPath()));
+                .anyMatch(val -> new AntPathMatcher().match(val,request.getRequestURI()));
     }
 
     @Override
